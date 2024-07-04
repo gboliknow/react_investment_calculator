@@ -1,8 +1,6 @@
-import { useState } from "react"
-
 
 export default function UserInput({
-    onChange, userinput: userInput
+    onChange, userInput: userInput
 }) {
 
 

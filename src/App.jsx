@@ -1,6 +1,7 @@
 import Header from "./components/Header"
 import UserInput from "./components/UserInput"
 import { useState } from "react"
+import Results from "./components/Results";
 
 function App() {
 
@@ -11,12 +12,13 @@ function App() {
     duration: 10
 })
 
+const inputIsValid = userInput.duration >= 1;
 function handleChange(inputIdentifier, newValue) {
     setUserInput(
         prevUserInput => {
             return {
                 ...prevUserInput,
-                [inputIdentifier]: newValue
+                [inputIdentifier]: +newValue
             }
         }
     );
@@ -24,7 +26,11 @@ function handleChange(inputIdentifier, newValue) {
   return (
     <>
       <Header />
+  
       <UserInput  onChange={handleChange} userInput={userInput} />
+      {inputIsValid && <Results  input={userInput} />}
+      {!inputIsValid && <p className="center" >Please enter a duration greater than zero.</p>}
+      
     </>
 
   )
